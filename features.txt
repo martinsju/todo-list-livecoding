@@ -1,0 +1,6 @@
+Next features:
+
+- localstorage (depooooois > database)
+- filtros de Tasks
+- adicionar paginação das tasks
+- quando concluir deixar o item com estilo diferente e no filtro das task poder mostrar ou não as task ja terminadas
