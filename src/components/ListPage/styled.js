@@ -8,7 +8,7 @@ export const Input = styled.input`
 	border: 1px solid #373546;
 	border-radius: 5px;
 	padding: 10px;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 	width: 100%;
 	box-sizing: border-box;
 	color: #f7f7f7;
