@@ -19,7 +19,6 @@ function ListPage() {
 
 	function handleInput(e) {
 		setInput(e.target.value)
-		console.log(input)
 	}
 
 	function addListItem(e) {
@@ -31,7 +30,27 @@ function ListPage() {
 			}
 
 			setList([...list, newItem])
+			clearInput()
 		}
+	}
+
+	function clearInput() {
+		setInput('')
+	}
+
+	function onDeleteItem(id) {
+		const newList = list.filter((elem) => elem.id !== id)
+		setList(newList)
+	}
+
+	function onToggleDone(id) {
+		const newList = list.map((elem) => {
+			if (elem.id === id) {
+				return { ...elem, done: !elem.done }
+			}
+			return elem
+		})
+		setList(newList)
 	}
 
 	return (
@@ -44,7 +63,12 @@ function ListPage() {
 				onKeyDown={addListItem}
 			/>
 			{list.map((item) => (
-				<ListItem key={item.id} item={item} />
+				<ListItem
+					key={item.id}
+					item={item}
+					onDelete={onDeleteItem}
+					onToggle={onToggleDone}
+				/>
 			))}
 		</C.Container>
 	)
