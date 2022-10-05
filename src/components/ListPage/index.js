@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ListItem from '../ListItem/index.js'
 import * as C from './styled.js'
 
 function ListPage() {
 	const [input, setInput] = useState('')
+	const [filteredResults, setFilteredResults] = useState([])
 	const [list, setList] = useState([
 		{
 			id: 1,
@@ -19,12 +20,36 @@ function ListPage() {
 
 	function handleInput(e) {
 		setInput(e.target.value)
+
+		searchItems()
 	}
 
-	function addListItem(e) {
-		if (e.key === 'Enter' && input) {
+	function searchItems() {
+		if (input !== '') {
+			const filteredData = list.filter((item) => {
+				return Object.values(item)
+					.join('')
+					.toLowerCase()
+					.includes(input.toLowerCase())
+			})
+			setFilteredResults(filteredData)
+		} else {
+			setFilteredResults(list)
+		}
+	}
+
+	function validateKeyDown(e) {
+		if (e.key === 'Enter') {
+			addListItem()
+		}
+	}
+
+	function addListItem() {
+		if (input) {
+			const lastID = list.slice(-1).at(0)?.id ?? 0
+
 			const newItem = {
-				id: list.length + 1,
+				id: lastID + 1,
 				name: input,
 				done: false
 			}
@@ -55,14 +80,17 @@ function ListPage() {
 
 	return (
 		<C.Container>
-			<C.Input
-				placeholder='Type your next task'
-				type='text'
-				value={input}
-				onChange={handleInput}
-				onKeyDown={addListItem}
-			/>
-			{list.map((item) => (
+			<C.AddArea>
+				<C.Input
+					placeholder='Type your next task'
+					type='text'
+					value={input}
+					onChange={handleInput}
+					onKeyDown={validateKeyDown}
+				/>
+				<C.Button onClick={addListItem}>Add Task</C.Button>
+			</C.AddArea>
+			{(input.length > 1 ? filteredResults : list).map((item) => (
 				<ListItem
 					key={item.id}
 					item={item}
