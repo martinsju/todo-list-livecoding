@@ -9,3 +9,5 @@ Next features:
 detalhe para resolver:
 
 - cria funções pra passar no onclick (ListItem/index)
+- colocar o input e botão em um Form e melhorar as funções de adicionar
+- trocar o searchItems pra um useMemo > const filteredArrays = useMemo( () =>{ return list.filter(item=> ***.toUpperCase().includes(input))}, [input, list] );
