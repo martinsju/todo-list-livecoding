@@ -5,18 +5,24 @@ import * as C from './styled.js'
 function ListPage() {
 	const [input, setInput] = useState('')
 	const [filteredResults, setFilteredResults] = useState([])
-	const [list, setList] = useState([
-		{
-			id: 1,
-			name: 'Study React',
-			done: false
-		},
-		{
-			id: 2,
-			name: 'Hang out with my friends',
-			done: false
-		}
-	])
+	const [list, setList] = useState(
+		JSON.parse(localStorage.getItem('listKey')) || [
+			{
+				id: 1,
+				name: 'Study React',
+				done: false
+			},
+			{
+				id: 2,
+				name: 'Hang out with my friends',
+				done: false
+			}
+		]
+	)
+
+	useEffect(() => {
+		localStorage.setItem('listKey', JSON.stringify(list))
+	}, [list])
 
 	function handleInput(e) {
 		setInput(e.target.value)
@@ -46,7 +52,7 @@ function ListPage() {
 
 	function addListItem() {
 		if (input) {
-			const lastID = list.slice(-1).at(0)?.id ?? 0
+			const lastID = list[list.length - 1]?.id ?? 0
 
 			const newItem = {
 				id: lastID + 1,
