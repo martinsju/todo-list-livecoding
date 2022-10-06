@@ -31,3 +31,9 @@ export const Button = styled.button`
 	font-family: 'Montserrat', sans-serif;
 	font-size: 15px;
 `
+export const Label = styled.div`
+	padding: 5px 0px 5px 3px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-weight: 100;
+`
