@@ -96,6 +96,7 @@ function ListPage() {
 				/>
 				<C.Button onClick={addListItem}>Add Task</C.Button>
 			</C.AddArea>
+			{!list.length && <C.Label>No items yet :(</C.Label>}
 			{(input.length > 1 ? filteredResults : list).map((item) => (
 				<ListItem
 					key={item.id}
