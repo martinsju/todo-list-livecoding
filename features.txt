@@ -1,10 +1,8 @@
 Next features:
 
-- localstorage (depooooois > database)
-- filtros de Tasks
-- adicionar paginação das tasks
-- alerta de double check para deletar task
+- fechar modal ao clicar fora da ModalArea
 - alertas de nova task, task deletada
+- adicionar paginação das tasks
 
 detalhe para resolver:
 
