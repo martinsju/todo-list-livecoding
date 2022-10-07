@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import ListItem from '../ListItem/index.js'
+import Modal from '../Modal/index.js'
 import * as C from './styled.js'
 
 function ListPage() {
 	const [input, setInput] = useState('')
 	const [filteredResults, setFilteredResults] = useState([])
+	const [modal, setModal] = useState({
+		open: false,
+		id: null
+	})
 	const [list, setList] = useState(
 		JSON.parse(localStorage.getItem('listKey')) || [
 			{
@@ -70,8 +75,24 @@ function ListPage() {
 	}
 
 	function onDeleteItem(id) {
-		const newList = list.filter((elem) => elem.id !== id)
+		//verify
+		console.log('ta clicando')
+		setModal({
+			open: true,
+			id: id
+		})
+	}
+
+	function handleDeleteTrue() {
+		//ver necessidade da verificação
+		const newList = list.filter((elem) => elem.id !== modal.id)
 		setList(newList)
+
+		setModal({ open: false, id: null })
+	}
+
+	function handleDeleteFalse() {
+		setModal({ open: false, id: null })
 	}
 
 	function onToggleDone(id) {
@@ -86,6 +107,12 @@ function ListPage() {
 
 	return (
 		<C.Container>
+			{modal.open && (
+				<Modal
+					handleDeleteTrue={handleDeleteTrue}
+					handleDeleteFalse={handleDeleteFalse}
+				/>
+			)}
 			<C.AddArea>
 				<C.Input
 					placeholder='Type your next task'
