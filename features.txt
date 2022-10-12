@@ -1,11 +1,13 @@
 Next features:
 
-- fechar modal ao clicar fora da ModalArea
-- alertas de nova task, task deletada
-- adicionar paginação das tasks
+- Criar design do Modal no Figma
+- Fechar modal ao clicar fora da ModalArea
+- Alertas de nova task, task deletada
+- Adicionar paginação das tasks
 
-detalhe para resolver:
+Detalhe para resolver:
 
-- cria funções pra passar no onclick (ListItem/index)
-- colocar o input e botão em um Form e melhorar as funções de adicionar
-- trocar o searchItems pra um useMemo > const filteredArrays = useMemo( () =>{ return list.filter(item=> ***.toUpperCase().includes(input))}, [input, list] );
+- Cria funções pra passar no onclick (ListItem/index)
+- Colocar o input e botão em um Form e melhorar as funções de adicionar
+- Trocar o searchItems pra um useMemo > const filteredArrays = useMemo( () =>{ return list.filter(item=> ***.toUpperCase().includes(input))}, [input, list] );
+- (BUG) Entender why the fuck quando pesquisa um numero, só funciona depois de dar space.
