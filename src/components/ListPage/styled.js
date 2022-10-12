@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	margin: 0px 25px 0px 25px;
+	width: 60%;
+	margin: 0 auto;
 `
+
 export const AddArea = styled.div`
 	display: flex;
 	margin-bottom: 10px;
