@@ -1,38 +1,18 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	width: 60%;
+	width: 800px;
+	max-width: 80%;
 	margin: 0 auto;
+	padding-top: 56px;
 `
 
 export const AddArea = styled.div`
 	display: flex;
+	gap: 20px;
 	margin-bottom: 10px;
 `
-export const Input = styled.input`
-	background: transparent;
-	border: 1px solid #373546;
-	border-radius: 5px;
-	padding: 10px;
-	margin-right: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	color: #f7f7f7;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	outline: none;
 
-	:focus {
-		border: 1px solid #cecece;
-	}
-`
-export const Button = styled.button`
-	width: 20%;
-	border: 1px solid #373546;
-	border-radius: 5px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 15px;
-`
 export const Label = styled.div`
 	padding: 5px 0px 5px 3px;
 	font-family: 'Montserrat', sans-serif;
