@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Button from '../Button/index.js'
+import Input from '../Input/index.js'
 import ListItem from '../ListItem/index.js'
 import Modal from '../Modal/index.js'
 import * as C from './styled.js'
@@ -29,24 +31,20 @@ function ListPage() {
 		localStorage.setItem('listKey', JSON.stringify(list))
 	}, [list])
 
-	function handleInput(e) {
-		setInput(e.target.value)
-
+	useEffect(() => {
 		searchItems()
+	}, [input])
+
+	function handleInput(e) {
+		console.log('input ok')
+		setInput(e.target.value)
 	}
 
 	function searchItems() {
-		if (input !== '') {
-			const filteredData = list.filter((item) => {
-				return Object.values(item)
-					.join('')
-					.toLowerCase()
-					.includes(input.toLowerCase())
-			})
-			setFilteredResults(filteredData)
-		} else {
-			setFilteredResults(list)
-		}
+		const filteredData = list.filter((item) => {
+			return item.name.includes(input)
+		})
+		setFilteredResults(filteredData)
 	}
 
 	function validateKeyDown(e) {
@@ -56,6 +54,7 @@ function ListPage() {
 	}
 
 	function addListItem() {
+		console.log('clicou')
 		if (input) {
 			const lastID = list[list.length - 1]?.id ?? 0
 
@@ -114,17 +113,16 @@ function ListPage() {
 				/>
 			)}
 			<C.AddArea>
-				<C.Input
-					placeholder='Type your next task'
-					type='text'
-					value={input}
+				<Input
 					onChange={handleInput}
 					onKeyDown={validateKeyDown}
+					placeholder='Type your next text'
 				/>
-				<C.Button onClick={addListItem}>Add Task</C.Button>
+
+				<Button addListItem={addListItem}>Click here</Button>
 			</C.AddArea>
 			{!list.length && <C.Label>No items yet :(</C.Label>}
-			{(input.length > 1 ? filteredResults : list).map((item) => (
+			{(input.length > 0 ? filteredResults : list).map((item) => (
 				<ListItem
 					key={item.id}
 					item={item}
