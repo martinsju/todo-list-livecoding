@@ -17,24 +17,26 @@ export const Container = styled.div`
 `
 
 export const ModalArea = styled.div`
-	width: 50%;
-	max-width: 300px;
-	height: 150px;
+	width: 380px;
+	max-width: 70%;
+	height: 140px;
 	padding: 25px 20px;
 	box-sizing: border-box;
-	background-color: #fafafa;
+	background-color: #2d2d32;
 	border-radius: 5px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	row-gap: 20px;
-	color: #000;
+	color: #f7f7f7;
+	font-size: 16px;
 `
 export const ButtonArea = styled.div`
 	display: flex;
 	justify-content: space-between;
-	gap: 25px;
+	gap: 20px;
+	border: 1px solid yellow;
 `
 
 export const Button = styled.button`
