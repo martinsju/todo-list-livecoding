@@ -36,7 +36,6 @@ export const ButtonArea = styled.div`
 	display: flex;
 	justify-content: space-between;
 	gap: 20px;
-	border: 1px solid yellow;
 `
 
 export const Button = styled.button`

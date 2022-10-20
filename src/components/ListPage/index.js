@@ -36,7 +36,6 @@ function ListPage() {
 	}, [input])
 
 	function handleInput(e) {
-		console.log('input ok')
 		setInput(e.target.value)
 	}
 
@@ -54,7 +53,6 @@ function ListPage() {
 	}
 
 	function addListItem() {
-		console.log('clicou')
 		if (input) {
 			const lastID = list[list.length - 1]?.id ?? 0
 
@@ -74,8 +72,6 @@ function ListPage() {
 	}
 
 	function onDeleteItem(id) {
-		//verify
-		console.log('ta clicando')
 		setModal({
 			open: true,
 			id: id
@@ -83,7 +79,6 @@ function ListPage() {
 	}
 
 	function handleDeleteTrue() {
-		//ver necessidade da verificação
 		const newList = list.filter((elem) => elem.id !== modal.id)
 		setList(newList)
 
@@ -121,7 +116,9 @@ function ListPage() {
 
 				<Button onClick={addListItem}>Click here</Button>
 			</C.AddArea>
+
 			{!list.length && <C.Label>No items yet :(</C.Label>}
+
 			{(input.length > 0 ? filteredResults : list).map((item) => (
 				<ListItem
 					key={item.id}
