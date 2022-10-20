@@ -4,9 +4,9 @@ import * as C from './styled.js'
 function Checkbox({ item, onToggle }) {
 	return (
 		<C.Input
-			done={item.done}
 			type='checkbox'
-			onClick={() => onToggle(item.id)}
+			onChange={() => onToggle(item.id)}
+			checked={item.done}
 		/>
 	)
 }
