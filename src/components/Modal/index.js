@@ -1,5 +1,6 @@
 import React from 'react'
 import * as C from './styled.js'
+import Button from '../Button'
 
 function Modal({ handleDeleteTrue, handleDeleteFalse }) {
 	return (
@@ -7,12 +8,20 @@ function Modal({ handleDeleteTrue, handleDeleteFalse }) {
 			<C.ModalArea>
 				<label>Are you sure you want to delete this task?</label>
 				<C.ButtonArea>
-					<C.Button color='green' onClick={handleDeleteTrue}>
+					<Button
+						color='#BCF39A'
+						hoverColor='#8BC766'
+						onClick={handleDeleteTrue}
+					>
 						Confirm
-					</C.Button>
-					<C.Button color='red' onClick={handleDeleteFalse}>
+					</Button>
+					<Button
+						color='#F47D7D'
+						hoverColor='#E05A5A'
+						onClick={handleDeleteFalse}
+					>
 						Cancel
-					</C.Button>
+					</Button>
 				</C.ButtonArea>
 			</C.ModalArea>
 		</C.Container>

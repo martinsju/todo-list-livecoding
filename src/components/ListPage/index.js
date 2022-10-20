@@ -119,7 +119,7 @@ function ListPage() {
 					placeholder='Type your next text'
 				/>
 
-				<Button addListItem={addListItem}>Click here</Button>
+				<Button onClick={addListItem}>Click here</Button>
 			</C.AddArea>
 			{!list.length && <C.Label>No items yet :(</C.Label>}
 			{(input.length > 0 ? filteredResults : list).map((item) => (
