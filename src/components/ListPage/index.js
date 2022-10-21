@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import ListItem from '../ListItem/index.js'
 import Button from '../Button/index.js'
 import Input from '../Input/index.js'
-import ListItem from '../ListItem/index.js'
 import Modal from '../Modal/index.js'
 import * as C from './styled.js'
 
@@ -61,6 +63,8 @@ function ListPage() {
 				name: input,
 				done: false
 			}
+			clearInput()
+			console.log('cheguei ate aqui')
 
 			setList([...list, newItem])
 			clearInput()
@@ -83,6 +87,10 @@ function ListPage() {
 		setList(newList)
 
 		setModal({ open: false, id: null })
+		toast('Task deleted', {
+			position: toast.POSITION.TOP_RIGHT,
+			className: 'foo-bar'
+		})
 	}
 
 	function handleDeleteFalse() {
@@ -112,6 +120,7 @@ function ListPage() {
 					onChange={handleInput}
 					onKeyDown={validateKeyDown}
 					placeholder='Type your next text'
+					value={input}
 				/>
 
 				<Button onClick={addListItem}>Click here</Button>
@@ -127,6 +136,7 @@ function ListPage() {
 					onToggle={onToggleDone}
 				/>
 			))}
+			<ToastContainer />
 		</C.Container>
 	)
 }
