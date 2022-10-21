@@ -4,8 +4,8 @@ import Button from '../Button'
 
 function Modal({ handleDeleteTrue, handleDeleteFalse }) {
 	return (
-		<C.Container>
-			<C.ModalArea>
+		<C.Container onClick={handleDeleteFalse}>
+			<C.ModalArea onClick={(e) => e.stopPropagation()}>
 				<label>Are you sure you want to delete this task?</label>
 				<C.ButtonArea>
 					<Button
