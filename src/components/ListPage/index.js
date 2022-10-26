@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ListItem from '../ListItem/index.js'
 import Button from '../Button/index.js'
@@ -37,6 +37,14 @@ function ListPage() {
 		searchItems()
 	}, [input])
 
+	function notifyAdded() {
+		toast.success('Task added', {})
+	}
+
+	function notifyDeleted() {
+		toast.error('Task deleted', {})
+	}
+
 	function handleInput(e) {
 		setInput(e.target.value)
 	}
@@ -68,6 +76,7 @@ function ListPage() {
 
 			setList([...list, newItem])
 			clearInput()
+			notifyAdded()
 		}
 	}
 
@@ -87,10 +96,7 @@ function ListPage() {
 		setList(newList)
 
 		setModal({ open: false, id: null })
-		toast('Task deleted', {
-			position: toast.POSITION.TOP_RIGHT,
-			className: 'foo-bar'
-		})
+		notifyDeleted()
 	}
 
 	function handleDeleteFalse() {
@@ -136,7 +142,12 @@ function ListPage() {
 					onToggle={onToggleDone}
 				/>
 			))}
-			<ToastContainer />
+			<C.StyledToast
+				autoClose={5000}
+				newestOnTop={true}
+				closeOnClick
+				theme='colored'
+			/>
 		</C.Container>
 	)
 }
