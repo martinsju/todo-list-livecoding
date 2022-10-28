@@ -72,9 +72,6 @@ function ListPage() {
 				name: input,
 				done: false
 			}
-			clearInput()
-			console.log('cheguei ate aqui')
-
 			setList([...list, newItem])
 			clearInput()
 			notifyAdded()
