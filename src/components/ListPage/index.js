@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { AiOutlinePlus } from 'react-icons/ai'
 import ListItem from '../ListItem/index.js'
 import Button from '../Button/index.js'
 import Input from '../Input/index.js'
@@ -129,7 +130,10 @@ function ListPage() {
 					value={input}
 				/>
 
-				<Button onClick={addListItem}>Click here</Button>
+				<Button onClick={addListItem}>
+					<AiOutlinePlus />
+					Add Task
+				</Button>
 			</C.AddArea>
 
 			{!list.length && <C.Label>No items yet :(</C.Label>}
