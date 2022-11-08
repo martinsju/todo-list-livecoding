@@ -1,12 +1,20 @@
 import React from 'react'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/Auth/AuthContext.js'
 import * as C from './styled.js'
 
 function Header() {
+	const auth = useContext(AuthContext)
+
 	return (
 		<C.Container>
-			<C.Header1 color='#BD93F9'>to</C.Header1>
-			<C.Header1>do</C.Header1>
-			<C.Header2>list</C.Header2>
+			<C.Section />
+			<C.StyledLink to='/list'>
+				<C.Todo color='#BD93F9'>to</C.Todo>
+				<C.Todo>do</C.Todo>
+				<C.List>list</C.List>
+			</C.StyledLink>
+			<C.Section>{auth.user && <C.Logout>Logout</C.Logout>}</C.Section>
 		</C.Container>
 	)
 }
