@@ -1,14 +1,12 @@
 import React from 'react'
 import * as C from './styled.js'
 
-function Checkbox({ item, onToggle }) {
+export function Checkbox({ item, onToggle }) {
+	function handleChange() {
+		onToggle(item.id)
+	}
+
 	return (
-		<C.Input
-			type='checkbox'
-			onChange={() => onToggle(item.id)}
-			checked={item.done}
-		/>
+		<C.Checkbox type='checkbox' onChange={handleChange} checked={item.done} />
 	)
 }
-
-export default Checkbox

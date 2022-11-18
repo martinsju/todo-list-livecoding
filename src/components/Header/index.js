@@ -1,9 +1,10 @@
 import React from 'react'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/Auth/AuthContext.js'
+import { LogoutButton } from '../LogoutButton'
 import * as C from './styled.js'
 
-function Header() {
+export function Header() {
 	const auth = useContext(AuthContext)
 
 	return (
@@ -14,9 +15,7 @@ function Header() {
 				<C.Todo>do</C.Todo>
 				<C.List>list</C.List>
 			</C.StyledLink>
-			<C.Section>{auth.user && <C.Logout>Logout</C.Logout>}</C.Section>
+			<C.Section>{auth.user && <LogoutButton />}</C.Section>
 		</C.Container>
 	)
 }
-
-export default Header

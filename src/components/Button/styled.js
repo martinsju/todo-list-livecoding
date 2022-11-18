@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Button = styled.button`
+const Button = styled.button`
 	background-color: ${({ color }) => color ?? '#f7f7f7'};
 	display: flex;
 	align-items: center;
@@ -23,3 +23,5 @@ export const Button = styled.button`
 		height: 20px;
 	}
 `
+
+export { Button }

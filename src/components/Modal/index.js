@@ -1,12 +1,12 @@
 import React from 'react'
+import { Button } from '../Button'
 import * as C from './styled.js'
-import Button from '../Button'
 
-function Modal({ handleDeleteTrue, handleDeleteFalse }) {
+export function Modal({ handleDeleteTrue, handleDeleteFalse }) {
 	return (
 		<C.Container onClick={handleDeleteFalse}>
 			<C.ModalArea onClick={(e) => e.stopPropagation()}>
-				<label>Are you sure you want to delete this task?</label>
+				<C.Label>Are you sure you want to delete this task?</C.Label>
 				<C.ButtonArea>
 					<Button
 						color='#BCF39A'
@@ -27,5 +27,3 @@ function Modal({ handleDeleteTrue, handleDeleteFalse }) {
 		</C.Container>
 	)
 }
-
-export default Modal

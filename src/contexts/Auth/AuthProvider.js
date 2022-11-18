@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { AuthContext } from './AuthContext'
 import useApi from '../../hooks/useApi.js'
 
-function AuthProvider({ children }) {
+export function AuthProvider({ children }) {
 	const [user, setUser] = useState()
 	const api = useApi()
 
@@ -11,6 +11,7 @@ function AuthProvider({ children }) {
 		const data = await api.signin(email, password)
 		if (data.user && data.token) {
 			setUser(data.user)
+			localStorage.setItem('userKey', JSON.stringify(data.user))
 			return true
 		}
 		return false
@@ -19,6 +20,8 @@ function AuthProvider({ children }) {
 	async function signout() {
 		await api.signout()
 		setUser(null)
+		localStorage.clear()
+		console.log('You were logged out')
 	}
 
 	return (
@@ -27,5 +30,3 @@ function AuthProvider({ children }) {
 		</AuthContext.Provider>
 	)
 }
-
-export default AuthProvider

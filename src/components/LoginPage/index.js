@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { routes } from '../../config/routes.js'
 import { AuthContext } from '../../contexts/Auth/AuthContext.js'
-import Button from '../Button/index.js'
-import Input from '../Input/index.js'
+import { Button } from '../Button/index.js'
+import { Input } from '../Input/index.js'
 import * as C from './styled.js'
 
-function LoginPage() {
+export function LoginPage() {
 	const auth = useContext(AuthContext)
 
 	const [email, setEmail] = useState('')
@@ -20,7 +20,7 @@ function LoginPage() {
 			const isLogged = await auth.signin(email, password) //true || false
 			console.log('logged: ', isLogged)
 			if (isLogged) {
-				navigate('/list')
+				navigate(routes.list.path)
 			}
 		}
 	}
@@ -58,5 +58,3 @@ function LoginPage() {
 		</C.Container>
 	)
 }
-
-export default LoginPage

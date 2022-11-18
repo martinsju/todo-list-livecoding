@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
-import GlobalStyles from './globalStyles.js'
 import { BrowserRouter } from 'react-router-dom'
-import AuthProvider from './contexts/Auth/AuthProvider'
+import { App } from './App'
+import { AuthProvider } from './contexts/Auth/AuthProvider'
+import GlobalStyles from './globalStyles.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -17,5 +16,3 @@ root.render(
 		</AuthProvider>
 	</React.StrictMode>
 )
-
-reportWebVitals()

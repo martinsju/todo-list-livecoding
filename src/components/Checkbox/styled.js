@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Input = styled.input`
+const Checkbox = styled.input`
 	width: 18px;
 	height: 18px;
 	min-width: 18px;
@@ -28,4 +28,4 @@ const Input = styled.input`
 	}
 `
 
-export { Input }
+export { Checkbox }

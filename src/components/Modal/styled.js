@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+const Container = styled.div`
 	position: fixed;
 	max-width: 100%;
 	max-height: 100%;
@@ -16,7 +16,7 @@ export const Container = styled.div`
 	bottom: 0;
 `
 
-export const ModalArea = styled.div`
+const ModalArea = styled.div`
 	width: 380px;
 	max-width: 70%;
 	height: 140px;
@@ -32,18 +32,17 @@ export const ModalArea = styled.div`
 	color: #f7f7f7;
 	font-size: 16px;
 `
-export const ButtonArea = styled.div`
+
+const Label = styled.label`
+	color: #f7f7f7;
+	font-size: 16px;
+	font-weight: 100;
+`
+
+const ButtonArea = styled.div`
 	display: flex;
 	justify-content: space-between;
 	gap: 20px;
 `
 
-export const Button = styled.button`
-	background-color: ${(props) => (props.color ? props.color : '#201F2D')};
-	color: #fafafa;
-	border: none;
-	border-radius: 3px;
-	padding: 10px 20px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 14px;
-`
+export { Container, ModalArea, Label, ButtonArea }

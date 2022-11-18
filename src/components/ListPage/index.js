@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { toast } from 'react-toastify'
 import { AiOutlinePlus } from 'react-icons/ai'
-import ListItem from '../ListItem/index.js'
-import Button from '../Button/index.js'
-import Input from '../Input/index.js'
-import Modal from '../Modal/index.js'
+import { ListItem } from '../ListItem/index.js'
+import { Button } from '../Button/index.js'
+import { Input } from '../Input/index.js'
+import { Modal } from '../Modal/index.js'
 import * as C from './styled.js'
+import Toast from '../Toast/index.js'
 
-function ListPage() {
+export function ListPage() {
 	const [input, setInput] = useState('')
 	const [filteredResults, setFilteredResults] = useState([])
 	const [modal, setModal] = useState({
@@ -32,10 +33,12 @@ function ListPage() {
 
 	useEffect(() => {
 		localStorage.setItem('listKey', JSON.stringify(list))
+		console.log('USE EFFECT LISTPAGE LIST')
 	}, [list])
 
 	useEffect(() => {
 		searchItems()
+		console.log('USE EFFECT LISTPAGE INPUT')
 	}, [input])
 
 	function notifyAdded() {
@@ -52,7 +55,7 @@ function ListPage() {
 
 	function searchItems() {
 		const filteredData = list.filter((item) => {
-			return item.name.includes(input)
+			return item.name.toLowerCase().includes(input.toLowerCase())
 		})
 		setFilteredResults(filteredData)
 	}
@@ -111,6 +114,17 @@ function ListPage() {
 		setList(newList)
 	}
 
+	function renderItem(item) {
+		return (
+			<ListItem
+				key={item.id}
+				item={item}
+				onDelete={onDeleteItem}
+				onToggle={onToggleDone}
+			/>
+		)
+	}
+
 	return (
 		<C.Container>
 			{modal.open && (
@@ -135,22 +149,11 @@ function ListPage() {
 
 			{!list.length && <C.Label>No items yet :(</C.Label>}
 
-			{(input.length > 0 ? filteredResults : list).map((item) => (
-				<ListItem
-					key={item.id}
-					item={item}
-					onDelete={onDeleteItem}
-					onToggle={onToggleDone}
-				/>
-			))}
-			<C.StyledToast
-				autoClose={5000}
-				newestOnTop={true}
-				closeOnClick
-				theme='colored'
-			/>
+			{!!input.length && filteredResults.map(renderItem)}
+
+			{!input.length && list.map(renderItem)}
+
+			<Toast />
 		</C.Container>
 	)
 }
-
-export default ListPage
