@@ -6,6 +6,7 @@ import { ListItem } from '../ListItem/index.js'
 import { Button } from '../Button/index.js'
 import { Input } from '../Input/index.js'
 import { Modal } from '../Modal/index.js'
+import { Storage } from '../../services/storage.js'
 import * as C from './styled.js'
 import Toast from '../Toast/index.js'
 
@@ -32,13 +33,7 @@ export function ListPage() {
 	)
 
 	useEffect(() => {
-		localStorage.setItem('listKey', JSON.stringify(list))
-		console.log('USE EFFECT LISTPAGE LIST')
-	}, [list])
-
-	useEffect(() => {
 		searchItems()
-		console.log('USE EFFECT LISTPAGE INPUT')
 	}, [input])
 
 	function notifyAdded() {
@@ -75,7 +70,10 @@ export function ListPage() {
 				name: input,
 				done: false
 			}
-			setList([...list, newItem])
+
+			const newList = [...list, newItem]
+			setList(newList)
+			Storage(newList, 'listKey').create()
 			clearInput()
 			notifyAdded()
 		}
@@ -86,6 +84,7 @@ export function ListPage() {
 	}
 
 	function onDeleteItem(id) {
+		console.log('id: ', id)
 		setModal({
 			open: true,
 			id: id
@@ -96,6 +95,7 @@ export function ListPage() {
 		const newList = list.filter((elem) => elem.id !== modal.id)
 		setList(newList)
 
+		Storage(newList, 'listKey').delete()
 		setModal({ open: false, id: null })
 		notifyDeleted()
 	}
