@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { AuthContext } from './AuthContext'
-import useApi from '../../hooks/useApi.js'
+
+import { useApi } from '../../hooks/useApi.js'
 
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState()
@@ -20,7 +21,8 @@ export function AuthProvider({ children }) {
 	async function signout() {
 		await api.signout()
 		setUser(null)
-		localStorage.clear()
+		Storage('userKey')
+		// localStorage.clear()
 		console.log('You were logged out')
 	}
 
