@@ -4,7 +4,7 @@ const api = axios.create({
 	baseURL: process.env.REACT_APP_API
 })
 
-function useApi() {
+export function useApi() {
 	return {
 		validateToken: async (token) => {
 			return {
@@ -28,5 +28,3 @@ function useApi() {
 		}
 	}
 }
-
-export default useApi
