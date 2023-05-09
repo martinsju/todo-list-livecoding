@@ -4,6 +4,7 @@ const Button = styled.button`
 	background-color: ${({ color }) => color ?? '#f7f7f7'};
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	column-gap: 10px;
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;
