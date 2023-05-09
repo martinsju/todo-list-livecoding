@@ -10,6 +10,7 @@ export function App() {
 			<Routes>
 				<Route path={routes.list.path} element={routes.list.component} />
 				<Route path={routes.login.path} element={routes.login.component} />
+				<Route path={routes.signup.path} element={routes.signup.component} />
 			</Routes>
 
 			{/* <Routes>

@@ -10,7 +10,7 @@ export function Header() {
 	return (
 		<C.Container>
 			<C.Section />
-			<C.StyledLink to='/list'>
+			<C.StyledLink to='/'>
 				<C.Todo color='#BD93F9'>to</C.Todo>
 				<C.Todo>do</C.Todo>
 				<C.List>list</C.List>

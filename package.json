@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server-auth db.json -w -p 3333"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +41,8 @@
     ]
   },
   "devDependencies": {
+    "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0",
     "styled-components": "^5.3.5"
   }
 }

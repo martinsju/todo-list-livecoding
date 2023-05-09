@@ -9,7 +9,7 @@ export function RequireAuth({ children }) {
 		console.log('user: ', auth.user)
 		console.log("You're not logged in")
 		// return <LoginPage />
-		return <Navigate to={routes.login.path} />
+		return <Navigate to={routes.signup.path} /> //TODO trocar de volta para login
 	}
 	return children
 }

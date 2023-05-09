@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "asdasd@gsdasd.com",
+      "password": "$2a$10$Iv7qtUIrlrFw/pajKj6HzO/dCP5mR5evz4TwhL2lEjTF9BVHWy2C6",
+      "id": 1
+    },
+    {
+      "email": "asdasd@asda.com",
+      "password": "$2a$10$HchQsQg38FfvjiB0iw0Aju94DFuDQLnPvmkP7u528T9RUjSTQvxwq",
+      "id": 2
+    },
+    {
+      "email": "adada@gmail.com",
+      "password": "$2a$10$db45kncNNvjCAnKAgJ2acuLqV90/36OOPr4UjZpIESQJdytr43tOK",
+      "id": 3
+    }
+  ]
+}

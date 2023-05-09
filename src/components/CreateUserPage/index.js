@@ -1,27 +1,28 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../config/routes.js'
-import { AuthContext } from '../../contexts/Auth/AuthContext.js'
+import { AuthContext, useAuth } from '../../contexts/Auth/AuthContext.js'
 import { Button } from '../Button/index.js'
 import { Input } from '../Input/index.js'
 import * as C from './styled.js'
 
-export function LoginPage() {
-	const auth = useContext(AuthContext)
-
+export function CreateUserPage() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const auth = useAuth()
+
 	const navigate = useNavigate()
 
-	async function handleLogin() {
+	async function handleSignUp() {
 		console.log('email: ', email)
 		console.log('pw: ', password)
 		if (email && password) {
-			const isLogged = await auth.signin(email, password) //true || false
-			// console.log('logged: ', isLogged)
-			if (isLogged) {
-				navigate(routes.list.path)
-			}
+			const isLogged = await auth.signup(email, password) //true || false
+			console.log('logged: ', isLogged)
+			// if (isLogged) {
+			// 	navigate(routes.list.path)
+			// }
 		}
 	}
 
@@ -35,7 +36,7 @@ export function LoginPage() {
 
 	return (
 		<C.Container>
-			<C.Title>Faça o login</C.Title>
+			<C.Title>Faça o seu cadastro</C.Title>
 			<C.InputContainer>
 				<C.InputArea>
 					<C.Label>Seu e-mail</C.Label>
@@ -54,7 +55,7 @@ export function LoginPage() {
 					/>
 				</C.InputArea>
 			</C.InputContainer>
-			<Button onClick={handleLogin}>Login</Button>
+			<Button onClick={handleSignUp}>Sign up</Button>
 		</C.Container>
 	)
 }

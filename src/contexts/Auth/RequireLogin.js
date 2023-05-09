@@ -8,7 +8,7 @@ export function RequireLogin({ children }) {
 		console.log('user: ', auth.user)
 		console.log("You're already logged in")
 		// return <ListPage />
-		return <Navigate to='/list' />
+		return <Navigate to='/' />
 	}
 	return children
 }
