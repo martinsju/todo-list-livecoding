@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import 'react-toastify/dist/ReactToastify.css'
-import { toast } from 'react-toastify'
 import { AiOutlinePlus } from 'react-icons/ai'
-import { ListItem } from '../ListItem/index.js'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { Storage } from '../../services/storage.js'
 import { Button } from '../Button/index.js'
 import { Input } from '../Input/index.js'
+import { ListItem } from '../ListItem/index.js'
 import { Modal } from '../Modal/index.js'
-import { Storage } from '../../services/storage.js'
-import * as C from './styled.js'
 import Toast from '../Toast/index.js'
+import * as C from './styled.js'
 
 export function ListPage() {
 	const [input, setInput] = useState('')
