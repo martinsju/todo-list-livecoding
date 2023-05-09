@@ -33,6 +33,10 @@ export function LoginPage() {
 		setPassword(e.target.value)
 	}
 
+	function handleClick() {
+		navigate(routes.signup.path)
+	}
+
 	return (
 		<C.Container>
 			<C.Title>Faça o login</C.Title>
@@ -55,6 +59,10 @@ export function LoginPage() {
 				</C.InputArea>
 			</C.InputContainer>
 			<Button onClick={handleLogin}>Login</Button>
+			<C.FooterTextSection>
+				<C.Paragraph>Não tem uma conta?</C.Paragraph>
+				<C.Link onClick={handleClick}>Cadastre-se agora</C.Link>
+			</C.FooterTextSection>
 		</C.Container>
 	)
 }

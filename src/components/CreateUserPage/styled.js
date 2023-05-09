@@ -32,5 +32,37 @@ const Title = styled.h2`
 const Label = styled.label`
 	font-size: 16px;
 `
+const FooterTextSection = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+`
 
-export { Container, Title, Label, InputArea, InputContainer }
+const Paragraph = styled.p`
+	font-size: 12px;
+	text-align: center;
+	margin: 0;
+`
+
+const Link = styled.button`
+	text-decoration: underline;
+	font-size: 12px;
+	color: #f7f7f7;
+	font-family: 'Poppins', sans-serif;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+`
+
+export {
+	Container,
+	Title,
+	Label,
+	InputArea,
+	InputContainer,
+	FooterTextSection,
+	Paragraph,
+	Link
+}

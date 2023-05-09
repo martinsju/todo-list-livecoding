@@ -34,6 +34,10 @@ export function CreateUserPage() {
 		setPassword(e.target.value)
 	}
 
+	function handleClick() {
+		navigate(routes.login.path)
+	}
+
 	return (
 		<C.Container>
 			<C.Title>Faça o seu cadastro</C.Title>
@@ -56,6 +60,10 @@ export function CreateUserPage() {
 				</C.InputArea>
 			</C.InputContainer>
 			<Button onClick={handleSignUp}>Sign up</Button>
+			<C.FooterTextSection>
+				<C.Paragraph>Já tem uma conta?</C.Paragraph>
+				<C.Link onClick={handleClick}>Faça o login</C.Link>
+			</C.FooterTextSection>
 		</C.Container>
 	)
 }
