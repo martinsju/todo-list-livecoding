@@ -1,15 +1,15 @@
-import { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
-import { AuthContext } from './AuthContext'
 import { routes } from '../../config/routes'
+import { useAuth } from './AuthContext'
 
 export function RequireAuth({ children }) {
-	const auth = useContext(AuthContext)
+	const auth = useAuth()
+
 	if (!auth.user) {
-		console.log('user: ', auth.user)
 		console.log("You're not logged in")
 		// return <LoginPage />
-		return <Navigate to={routes.signup.path} /> //TODO trocar de volta para login
+		return <Navigate to={routes.login.path} />
 	}
+	console.log('Already logged in ', auth.user)
 	return children
 }

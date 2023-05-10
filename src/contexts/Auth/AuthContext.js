@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useApi } from '../../hooks/useApi.js'
+import { Storage } from '../../services/storage.js'
 
 export const AuthContext = createContext()
 
@@ -9,12 +10,19 @@ export function AuthProvider({ children }) {
 
 	const api = useApi()
 
+	useEffect(() => {
+		const loggedUser = localStorage.getItem('user')
+		if (loggedUser) {
+			setUser(JSON.parse(loggedUser))
+		}
+	}, [])
+
 	async function signin(email, password) {
 		const data = await api.signin(email, password)
 		if (data.user) {
 			setUser(data.user)
-			// localStorage.setItem('userKey', JSON.stringify(data.user))
-			console.log('context signin')
+			localStorage.setItem('user', JSON.stringify(data.user))
+			console.log('context signin, user salvo')
 
 			return true
 		}
@@ -22,12 +30,9 @@ export function AuthProvider({ children }) {
 	}
 
 	async function signup(email, password) {
-		const data = await api.signup(email, password)
-		console.log('context signup')
-		if (data.user) {
+		if (email && password) {
+			const data = await api.signup(email, password)
 			setUser(data.user)
-			// localStorage.setItem('userKey', JSON.stringify(data.user))
-
 			return true
 		}
 		return false
@@ -36,8 +41,7 @@ export function AuthProvider({ children }) {
 	async function signout() {
 		await api.signout()
 		setUser(null)
-		Storage('userKey')
-		// localStorage.clear()
+		Storage.clear()
 		console.log('You were logged out')
 	}
 

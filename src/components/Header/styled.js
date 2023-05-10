@@ -29,12 +29,36 @@ const StyledLink = styled(Link)`
 	text-decoration: none;
 	display: flex;
 `
+const SectionLeft = styled.section`
+	//TODO tirar esse
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+`
 
-const Section = styled.section`
+const SectionRight = styled.section`
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: end;
 `
 
-export { Container, Todo, List, StyledLink, Section }
+const Paragraph = styled.p`
+	color: #f7f7f7;
+	font-family: 'Poppins', sans-serif;
+	font-size: 14px;
+	font-weight: 200;
+	text-align: center;
+	margin: 0;
+`
+
+export {
+	Container,
+	Todo,
+	List,
+	StyledLink,
+	SectionLeft,
+	SectionRight,
+	Paragraph
+}

@@ -20,9 +20,11 @@ export function CreateUserPage() {
 		if (email && password) {
 			const isLogged = await auth.signup(email, password) //true || false
 			console.log('logged: ', isLogged)
-			// if (isLogged) {
-			// 	navigate(routes.list.path)
-			// }
+			if (isLogged) {
+				console.log('user: ', auth.user)
+
+				navigate(routes.list.path)
+			}
 		}
 	}
 
