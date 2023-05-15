@@ -22,6 +22,8 @@ export function LoginPage() {
 			if (isLogged) {
 				navigate(routes.list.path)
 			}
+		} else {
+			alert('Preencha todos os campos')
 		}
 	}
 

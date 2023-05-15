@@ -17,7 +17,9 @@ export function Header() {
 			<C.SectionRight>
 				{auth.user && (
 					<>
-						<C.Paragraph>Logged as {auth.user.email} | </C.Paragraph>
+						{auth.user && (
+							<C.Paragraph>Logged as {auth.user.email} | </C.Paragraph>
+						)}
 						<LogoutButton />
 					</>
 				)}
