@@ -5,11 +5,11 @@ import { useAuth } from './AuthContext'
 export function RequireAuth({ children }) {
 	const auth = useAuth()
 
-	if (!auth.user) {
+	console.log('RODOU O REQUIRE AUTH')
+	if (!auth.isLogged) {
 		console.log("You're not logged in")
-		// return <LoginPage />
 		return <Navigate to={routes.login.path} />
 	}
-	console.log('Already logged in ', auth.user)
+	console.log("You're logged as", auth.user.email)
 	return children
 }

@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useApi } from '../../hooks/useApi.js'
-import { Storage } from '../../services/storage.js'
 
 export const AuthContext = createContext()
 
@@ -11,10 +10,14 @@ export function AuthProvider({ children }) {
 
 	const api = useApi()
 
+	// const currentSession = JSON.parse(localStorage.getItem('user'))
+
 	useEffect(() => {
+		console.log('RODOU USEEFFECT DO AUTH')
 		const currentSession = JSON.parse(localStorage.getItem('user'))
 		console.log('currentSession ', currentSession)
-		if (currentSession && currentSession.accessToken) {
+
+		if (currentSession.accessToken) {
 			console.log('tem user: ', currentSession.user)
 			setUser(currentSession.user)
 			setIsLogged(true)
@@ -24,6 +27,35 @@ export function AuthProvider({ children }) {
 			setIsLogged(false)
 		}
 	}, [])
+
+	async function signin(email, password) {
+		const data = await api.signin(email, password)
+		if (data) {
+			setUser(data.user)
+			localStorage.setItem('user', JSON.stringify(data))
+			console.log('context signin, user salvo')
+
+			return true
+		}
+		return false
+	}
+
+	async function signup(email, password) {
+		if (email && password) {
+			const data = await api.signup(email, password)
+			setUser(data.user)
+			localStorage.setItem('user', JSON.stringify(data))
+			return true
+		}
+		return false
+	}
+
+	async function signout() {
+		await api.signout()
+		setUser(null)
+		localStorage.clear()
+		console.log('You were logged out')
+	}
 
 	// async function refreshToken() {
 	// 	//nao tem como refresh porque nao tem a feature no json-server-
@@ -56,41 +88,13 @@ export function AuthProvider({ children }) {
 		return false
 	}
 
-	async function signin(email, password) {
-		const data = await api.signin(email, password)
-		if (data) {
-			setUser(data.user)
-			localStorage.setItem('user', JSON.stringify(data))
-			console.log('context signin, user salvo')
-
-			return true
-		}
-		return false
-	}
-
-	async function signup(email, password) {
-		if (email && password) {
-			const data = await api.signup(email, password)
-			setUser(data.user)
-			localStorage.setItem('user', JSON.stringify(data))
-			return true
-		}
-		return false
-	}
-
-	async function signout() {
-		await api.signout()
-		setUser(null)
-		localStorage.clear()
-		console.log('You were logged out')
-	}
-
 	return (
 		<AuthContext.Provider
 			value={{
 				user,
 				isLogged,
 				setUser,
+				setIsLogged,
 				validateToken,
 				signin,
 				signup,
