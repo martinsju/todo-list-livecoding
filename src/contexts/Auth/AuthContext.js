@@ -5,6 +5,7 @@ export const AuthContext = createContext()
 
 export function AuthProvider({ children }) {
 	const [user, setUser] = useState()
+	const [token, setToken] = useState()
 	const [isLogged, setIsLogged] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -23,7 +24,7 @@ export function AuthProvider({ children }) {
 			setIsLogged(true)
 		} else {
 			console.log('nao tem user logado')
-			setUser()
+			setUser(null)
 			setIsLogged(false)
 		}
 	}, [])
@@ -32,6 +33,8 @@ export function AuthProvider({ children }) {
 		const data = await api.signin(email, password)
 		if (data) {
 			setUser(data.user)
+			setToken(data.accessToken)
+			setIsLogged(true)
 			localStorage.setItem('user', JSON.stringify(data))
 			console.log('context signin, user salvo')
 
@@ -44,6 +47,8 @@ export function AuthProvider({ children }) {
 		if (email && password) {
 			const data = await api.signup(email, password)
 			setUser(data.user)
+			setToken(data.accessToken)
+			setIsLogged(true)
 			localStorage.setItem('user', JSON.stringify(data))
 			return true
 		}
@@ -53,6 +58,8 @@ export function AuthProvider({ children }) {
 	async function signout() {
 		await api.signout()
 		setUser(null)
+		setToken(null)
+		setIsLogged(false)
 		localStorage.clear()
 		console.log('You were logged out')
 	}
@@ -78,13 +85,14 @@ export function AuthProvider({ children }) {
 
 	//para saber se o user tem acesso àquela feature. Exemplo editar ou deletar algo.
 	async function validateToken() {
-		if (user.accessToken) {
+		if (token) {
 			// const response = await api.validateToken(user.accessToken)
-			setIsLogged(true)
-			return true
+			// setIsLogged(true)
+			console.log('token é ', token)
+			return token
 		}
-		setIsLogged(false)
-		console.log('user not logged in')
+		// setIsLogged(false)
+		// console.log('user not logged in')
 		return false
 	}
 

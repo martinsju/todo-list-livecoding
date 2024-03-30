@@ -9,6 +9,8 @@ import { ListItem } from '../ListItem/index.js'
 import { Modal } from '../Modal/index.js'
 import Toast from '../Toast/index.js'
 import * as C from './styled.js'
+import axios from 'axios'
+import { useAuth } from '../../contexts/Auth/AuthContext.js'
 
 export function ListPage() {
 	const [input, setInput] = useState('')
@@ -31,6 +33,8 @@ export function ListPage() {
 			}
 		]
 	)
+
+	const auth = useAuth()
 
 	useEffect(() => {
 		searchItems()
@@ -61,7 +65,7 @@ export function ListPage() {
 		}
 	}
 
-	function addListItem() {
+	async function addListItem() {
 		if (input) {
 			const lastID = list[list.length - 1]?.id ?? 0
 
@@ -74,6 +78,15 @@ export function ListPage() {
 			const newList = [...list, newItem]
 			setList(newList)
 			Storage(newList, 'listKey').create()
+			const token = await auth.validateToken()
+			await axios.post(`http://localhost:3333/tasks/`, {
+				headers: {
+					Authorization: 'Bearer ' + token
+				},
+				task: newItem,
+				userId: auth.user.id
+			})
+			console.log('new task ', newItem, ' of ', auth.user.id)
 			clearInput()
 			notifyAdded()
 		}
@@ -133,6 +146,7 @@ export function ListPage() {
 					handleDeleteFalse={handleDeleteFalse}
 				/>
 			)}
+
 			<C.AddArea>
 				<Input
 					onChange={handleInput}
@@ -146,13 +160,9 @@ export function ListPage() {
 					Add Task
 				</Button>
 			</C.AddArea>
-
 			{!list.length && <C.Label>No items yet :(</C.Label>}
-
 			{!!input.length && filteredResults.map(renderItem)}
-
 			{!input.length && list.map(renderItem)}
-
 			<Toast />
 		</C.Container>
 	)
